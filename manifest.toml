@@ -1,7 +1,7 @@
 id = "html-syntax"
 name = "HTML"
-version = "0.0.1"
-abi = "1.12"
+version = "0.0.2"
+abi = "1.13"
 # A language and nothing else: no module of its own and no pane. The grammar is the file the
 # installer downloads and checks.
 
@@ -32,4 +32,16 @@ highlights = '''
 (erroneous_end_tag_name) @keyword
 
 (tag_name) @keyword
+'''
+
+# The text of a <script> is JavaScript (built into TerminalCode) and the text of a <style> is CSS
+# (the css-syntax plugin, which has to be on for it to be colored).
+injections = '''
+((script_element
+   (raw_text) @injection.content)
+ (#set! injection.language "javascript"))
+
+((style_element
+   (raw_text) @injection.content)
+ (#set! injection.language "css"))
 '''

@@ -8,12 +8,19 @@ It is a language and nothing else: there is no code in it and no pane. The plugi
 - `manifest.toml`, which says which files are HTML (`[language]`: `extensions`) and has the
   highlight query as text.
 
-TerminalCode loads the grammar in its sandbox (plugin API 1.12, TerminalCode 0.11.0 or later) and colors the
+TerminalCode loads the grammar in its sandbox (plugin API 1.12, TerminalCode 0.11.0 or later; 1.13 for what is inside `<script>` and `<style>`) and colors the
 files with the query, using the colors of your theme (`syntax.keyword`, `syntax.string`, ... in the theme file).
 
 ## Use
 
 "Plugins: Manage", install **HTML**, and turn it on. Files ending in `.html`, `.htm`, `.xhtml` are colored when they are opened.
+
+## JavaScript and CSS inside
+
+The text of a `<script>` is colored as JavaScript, and the text of a `<style>` as CSS, with the colors of those languages
+(`injections` in `manifest.toml`; plugin API 1.13, TerminalCode 0.12.0 or later). JavaScript is built into the editor. For the
+CSS the [CSS plugin](https://github.com/Tim-kieboom/trcode-plugin-css-syntax) has to be on as well; without it the text of a
+`<style>` keeps the plain color. Attributes such as `style="..."` and `onclick="..."` are not colored as CSS or JavaScript.
 
 ## Where the grammar comes from
 
